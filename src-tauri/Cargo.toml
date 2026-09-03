@@ -1,0 +1,44 @@
+[package]
+name = "aipin"
+version = "0.1.0-alpha.1"
+description = "Windows multi-model comparison client"
+authors = ["JananZZZ"]
+license = "MIT"
+repository = "https://github.com/JananZZZ/AiPin"
+edition = "2021"
+
+[lib]
+name = "aipin_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-window-state = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+rusqlite = { version = "0.32", features = ["bundled", "chrono"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls-native-roots"] }
+eventsource-stream = "0.2"
+futures-util = "0.3"
+keyring = { version = "3", features = ["windows-native"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+url = "2"
+dirs = "6"
+sha2 = "0.10"
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }
+windows-sys = { version = "0.61", features = ["Win32_UI_WindowsAndMessaging"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time"] }
+tokio-util = { version = "0.7", features = ["rt"] }
