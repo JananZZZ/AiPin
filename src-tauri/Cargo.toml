@@ -37,7 +37,7 @@ uuid = { version = "1", features = ["v4", "serde"] }
 url = "2"
 dirs = "6"
 sha2 = "0.10"
-base64 = "0.22"
+base64 = "0.23"
 image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }
 windows-sys = { version = "0.61", features = ["Win32_UI_WindowsAndMessaging"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time"] }
