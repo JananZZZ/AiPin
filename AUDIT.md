@@ -14,6 +14,8 @@
 - 布局测试包含 10,000 组随机拖动、边界、锁定和尺寸守恒用例。
 - Rust 测试覆盖 OpenAI Responses、DeepSeek、Kimi、MiniMax、硅基流动参数映射，联网能力字段，附件校验，HTTPS 边界和脱敏导出。
 
+当前 alpha 的运行时持久化以 SQLite `app_settings.app_snapshot_v1` 聚合 JSON 快照为主；schema 中的结构化会话、消息、请求和队列表尚未全部接管主读写路径。架构文档已明确这一迁移边界，避免二次开发者仅凭建表语句误判实现状态。
+
 Windows 链接器会输出本地化的“正在创建库”提示，并被新版 Rust 作为 `linker_messages` warning 展示；Clippy 与测试退出码均为 0，不是源码告警。
 
 ## 真实 AiPin.exe 验证

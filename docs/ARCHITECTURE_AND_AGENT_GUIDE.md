@@ -124,7 +124,7 @@ src/
 src-tauri/src/
 ├─ lib.rs                          Tauri 启动、窗口、命令与附件/便携数据入口
 ├─ network.rs                      HTTP 客户端、请求映射、SSE 与错误归一化
-├─ db.rs                           SQLite、迁移、快照和领域表写入
+├─ db.rs                           SQLite、迁移、聚合快照和领域表 schema
 ├─ credentials.rs                  Windows Credential Manager
 ├─ security.rs                     URL、重定向和认证安全校验
 ├─ models.rs                       Rust DTO
@@ -286,7 +286,13 @@ SQLite 使用外键、WAL 和事务。schema v1 包含：
 - 请求与队列：`request_attempts`、`queued_prompts`。
 - 附件：`attachments`。
 
-应用同时保存聚合快照，以便快速恢复当前 UI。迁移必须向前兼容；旧 EXE 遇到更高 schema 版本时拒绝写入。
+### 当前 alpha 的真实读写路径
+
+`v0.1.0-alpha.1` 的运行时主路径是把完整应用状态序列化为 JSON，并写入 `app_settings` 中的 `app_snapshot_v1`；启动与设置窗口同步也主要从这份聚合快照恢复。上面列出的会话、消息、请求、队列和布局领域表已经进入 schema，但目前不是所有正常操作的主读写来源。它们是后续结构化迁移的目标，不应被描述成已经完整接管持久化。
+
+二次开发时必须先从 `db.rs` 和调用方确认某张表是否真的在当前路径读写，不能只看到建表语句就假设功能已经接入。若把某一领域从 `app_snapshot_v1` 迁移到结构化表，需要同时设计：旧快照读取、一次性回填、写入切换或双写窗口、失败回滚、设置窗同步以及降级保护。迁移完成前不能让快照与领域表互相覆盖造成数据丢失。
+
+迁移必须向前兼容；旧 EXE 遇到更高 schema 版本时拒绝写入。
 
 `.aipin` 是 JSON 容器，格式标识为 `com.aipin.portable`，schemaVersion 当前为 1。范围可选：
 
@@ -310,7 +316,7 @@ flowchart TB
     React["React：不可信显示层"] -->|"类型化 IPC，不含 Key"| Rust["Rust：可信核心"]
     Rust -->|"按 accountId 读取"| Cred["Credential Manager"]
     Rust -->|"HTTPS + 原 origin 认证头"| API["供应商 API"]
-    Rust -->|"脱敏快照"| SQLite["SQLite"]
+    Rust -->|"聚合应用快照 / 脱敏配置"| SQLite["SQLite"]
     React -->|"安全 Markdown"| WebView["WebView2 DOM"]
     API -->|"模型输出视为不可信文本"| Rust
 ```
@@ -404,6 +410,7 @@ cargo clippy --manifest-path src-tauri\Cargo.toml --all-targets -- -D warnings
 - 设置窗口与主窗口需要实时同步，但设置窗口不能用旧状态覆盖主窗口消息、队列或历史。
 - 队列在应用重启后必须暂停，不能自动发送和产生费用。
 - 修改 SQLite schema 或 .aipin 格式时必须提供向前迁移、旧版本读取策略和损坏输入测试，且永不导出凭据。
+- 当前 alpha 主要通过 app_settings.app_snapshot_v1 聚合快照持久化。看到领域表建表语句不代表它已进入主读写路径；修改前先验证真实调用链，迁移时处理回填、双写/切换、回滚与设置窗同步。
 - 保留 Markdown 严格清洗、HTTPS 限制、禁止聊天重定向、认证头不跨 origin 等安全边界。
 - 不覆盖用户已有改动，不执行破坏性 Git 或文件操作。
 - 依赖、缓存、临时工具和大型构建目录优先放在项目工作目录，非必要不占用系统盘。

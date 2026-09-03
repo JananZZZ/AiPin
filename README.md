@@ -184,7 +184,7 @@ AiPin 提供以下供应商预设，也允许连接自定义的 OpenAI-compatibl
 
 AiPin 的默认数据目录为 `%LOCALAPPDATA%\AiPin`：
 
-- SQLite 保存设置、模型定义、布局、队列与会话。
+- SQLite 保存设置、模型定义、布局、队列与会话；当前 alpha 的主读写路径是数据库中的聚合应用快照，结构化领域表仍在逐步接管。
 - 附件按 SHA-256 保存并去重。
 - API Key 使用 Windows Credential Manager Generic Credential。
 - SQLite 中只保存密钥引用，不保存完整 Key。
