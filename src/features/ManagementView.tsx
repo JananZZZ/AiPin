@@ -682,7 +682,7 @@ function GenericSettings({ section }: { section: ManagementSection }) {
   if (section === "privacy") return <PrivacySettings />;
   if (section === "history") return <HistoryView />;
   if (section === "shortcuts") return <div className="settings-page"><div className="section-heading"><div><h2>快捷键</h2><p>全局与工作区快捷键。</p></div></div><SettingRow label="恢复窗口" description="即使窗口完全透明也可恢复。"><kbd>Ctrl + Alt + Space</kbd></SettingRow><SettingRow label="打开历史"><kbd>Ctrl + H</kbd></SettingRow><SettingRow label="停止当前批次"><kbd>Ctrl + C</kbd><span className="control-separator">或</span><kbd>Ctrl + .</kbd></SettingRow></div>;
-  return <div className="settings-page"><div className="section-heading"><div><h2>关于 AiPin</h2><p>本地优先的 Windows 多模型对比客户端。</p></div></div><SettingRow label="应用版本"><code>0.1.0-alpha.1</code></SettingRow><SettingRow label="WebView2"><span className="state-text">Evergreen · 启动时检测</span></SettingRow><SettingRow label="数据库 schema"><code>1</code></SettingRow><SettingRow label="开源许可"><span className="state-text">MIT</span></SettingRow></div>;
+  return <div className="settings-page"><div className="section-heading"><div><h2>关于 AiPin</h2><p>本地优先的 Windows 多模型对比客户端。</p></div></div><SettingRow label="应用版本"><code>1.0.0</code></SettingRow><SettingRow label="WebView2"><span className="state-text">Evergreen · 启动时检测</span></SettingRow><SettingRow label="数据库 schema"><code>1</code></SettingRow><SettingRow label="开源许可"><span className="state-text">MIT</span></SettingRow></div>;
 }
 
 export function ManagementView({ standalone = false }: { standalone?: boolean }) {

@@ -10,7 +10,10 @@ https://github.com/JananZZZ/AiPin/security/advisories/new
 
 ## 支持范围
 
-当前安全修复只面向最新公开的 alpha 版本。项目进入稳定发布后会在此处维护更细的版本支持表。
+| 版本 | 是否接受安全修复 |
+| --- | --- |
+| 1.x | 是 |
+| 0.1.0-alpha.x | 否，请升级到最新正式版 |
 
 ## 主要安全边界
 

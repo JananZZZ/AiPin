@@ -1,6 +1,6 @@
 [package]
 name = "aipin"
-version = "0.1.0-alpha.1"
+version = "1.0.0"
 description = "Windows multi-model comparison client"
 authors = ["JananZZZ"]
 license = "MIT"

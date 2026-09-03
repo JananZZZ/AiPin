@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/JananZZZ/AiPin/actions/workflows/ci.yml"><img alt="Windows CI" src="https://github.com/JananZZZ/AiPin/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://github.com/JananZZZ/AiPin/releases/tag/v0.1.0-alpha.1"><img alt="版本" src="https://img.shields.io/badge/version-0.1.0--alpha.1-ea3f53"></a>
+  <a href="https://github.com/JananZZZ/AiPin/releases/tag/v1.0.0"><img alt="版本" src="https://img.shields.io/badge/version-1.0.0-ea3f53"></a>
   <img alt="平台" src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-3b82f6">
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
 </p>
@@ -26,7 +26,7 @@ AiPin 是一个本地优先的 Windows 多模型对比客户端。它把统一�
 它没有 AiPin 云端账号，也没有中转服务器。API Key 保存在 Windows Credential Manager；会话、布局和附件留在你的电脑上。AiPin 负责组织请求与结果，模型服务仍由你自己选择和管理。
 
 > [!IMPORTANT]
-> `v0.1.0-alpha.1` 是早期公开版本。目前只支持 Windows 10 22H2 / Windows 11 x64，并需要 Microsoft Edge WebView2 Runtime。发布的 EXE 尚未进行 Authenticode 签名，Windows 可能显示 SmartScreen 提示。
+> `v1.0.0` 是 AiPin 的首个正式版本。目前只支持 Windows 10 22H2 / Windows 11 x64，并需要 Microsoft Edge WebView2 Runtime。发布的 EXE 尚未进行 Authenticode 签名，Windows 可能显示 SmartScreen 提示。
 
 ## 目录
 
@@ -51,7 +51,7 @@ AiPin 是一个本地优先的 Windows 多模型对比客户端。它把统一�
 
 ### 1. 下载
 
-从 [AiPin v0.1.0-alpha.1 Release](https://github.com/JananZZZ/AiPin/releases/tag/v0.1.0-alpha.1) 下载单文件 `AiPin.exe`。不需要安装，把它放在合适的位置后直接运行即可。
+从 [AiPin v1.0 Release](https://github.com/JananZZZ/AiPin/releases/tag/v1.0.0) 下载单文件 `AiPin.exe`。不需要安装，把它放在合适的位置后直接运行即可。
 
 设置、数据库和附件保存在 `%LOCALAPPDATA%\AiPin`，因此替换 EXE 不会自动删除已有内容。API Key 单独保存在 Windows Credential Manager，不跟随 EXE 或 `.aipin` 文件移动。
 
@@ -184,7 +184,7 @@ AiPin 提供以下供应商预设，也允许连接自定义的 OpenAI-compatibl
 
 AiPin 的默认数据目录为 `%LOCALAPPDATA%\AiPin`：
 
-- SQLite 保存设置、模型定义、布局、队列与会话；当前 alpha 的主读写路径是数据库中的聚合应用快照，结构化领域表仍在逐步接管。
+- SQLite 保存设置、模型定义、布局、队列与会话；当前 v1 的主读写路径是数据库中的聚合应用快照，结构化领域表仍在逐步接管。
 - 附件按 SHA-256 保存并去重。
 - API Key 使用 Windows Credential Manager Generic Credential。
 - SQLite 中只保存密钥引用，不保存完整 Key。

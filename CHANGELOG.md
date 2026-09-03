@@ -1,6 +1,22 @@
 # 更新记录
 
-本项目遵循语义化版本。当前仍处于 alpha 阶段，界面和本地数据结构可能在提供迁移的前提下继续调整。
+本项目遵循语义化版本。`1.x` 是当前稳定版本线；涉及本地数据格式的变更会提供明确的迁移和兼容策略。
+
+## [1.0.0] - 2026-09-03
+
+### 正式发布
+
+- 将完整多模型工作区、独立模型上下文、流式输出、队列、历史和数据迁移能力封版为首个正式版本。
+- 统一应用、前端、Rust、Tauri、关于页和公开文档版本为 `1.0.0`。
+- 完成真实 `AiPin.exe` 多模型请求、双窗口联动、公开媒体和 Release 产物验证。
+- 提供 Windows CI、严格 Clippy、前端/Rust 测试、依赖更新与安全报告流程。
+- 发布中文 README、完整技术架构文档和可直接交给编程 Agent 的二次开发提示词。
+
+### 兼容与限制
+
+- 支持 Windows 10 22H2 / Windows 11 x64，需要 Microsoft Edge WebView2 Evergreen Runtime。
+- 当前 EXE 未进行 Authenticode 签名，Windows 可能显示 SmartScreen 提示。
+- 保持 schema v1 与 `.aipin` schemaVersion 1，不要求现有用户迁移数据。
 
 ## [0.1.0-alpha.1] - 2026-09-03
 

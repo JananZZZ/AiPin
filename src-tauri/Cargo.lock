@@ -31,7 +31,7 @@ dependencies = [
 
 [[package]]
 name = "aipin"
-version = "0.1.0-alpha.1"
+version = "1.0.0"
 dependencies = [
  "base64 0.22.1",
  "chrono",

@@ -13,6 +13,9 @@ export default defineConfig({
     hmr: host ? { protocol: "ws", host, port: 1421 } : undefined,
     watch: { ignored: ["**/src-tauri/**"] }
   },
+  test: {
+    exclude: ["**/.tooling/**", "**/node_modules/**", "**/dist/**", "**/.build/**", "**/src-tauri/**"]
+  },
   envPrefix: ["VITE_", "TAURI_"],
   build: {
     target: "chrome105",

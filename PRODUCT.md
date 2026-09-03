@@ -6,7 +6,7 @@ product
 
 ## Platform
 
-web
+Windows 10/11 x64 desktop（Tauri 2 + WebView2）
 
 ## Users
 

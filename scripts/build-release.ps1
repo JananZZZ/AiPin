@@ -23,4 +23,7 @@ cargo.exe clean --release --package aipin --manifest-path "src-tauri\Cargo.toml"
 cargo.exe build --release --manifest-path "src-tauri\Cargo.toml"
 New-Item -ItemType Directory -Force $ReleaseDir | Out-Null
 Copy-Item -LiteralPath (Join-Path $env:CARGO_TARGET_DIR "release\aipin.exe") -Destination (Join-Path $ReleaseDir "AiPin.exe") -Force
-Get-FileHash (Join-Path $ReleaseDir "AiPin.exe") -Algorithm SHA256
+$ReleaseExe = Join-Path $ReleaseDir "AiPin.exe"
+$ReleaseHash = Get-FileHash $ReleaseExe -Algorithm SHA256
+Set-Content -LiteralPath (Join-Path $ReleaseDir "SHA256SUMS.txt") -Value "$($ReleaseHash.Hash.ToLowerInvariant())  AiPin.exe" -Encoding ascii
+$ReleaseHash
