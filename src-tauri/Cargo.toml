@@ -35,7 +35,7 @@ keyring = { version = "3", features = ["windows-native"] }
 chrono = { version = "0.4", features = ["serde"] }
 uuid = { version = "1", features = ["v4", "serde"] }
 url = "2"
-dirs = "6"
+dirs = "7"
 sha2 = "0.10"
 base64 = "0.22"
 image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp"] }
